@@ -1,5 +1,8 @@
 import { useForm } from "react-hook-form";
 import { auth } from '../config/firebase';
+import { useContext } from 'react'
+import { AuthContext } from '../utils/Auth';
+import { Redirect } from 'react-router-dom';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -17,6 +20,12 @@ const Login = () => {
       console.log(error); // Errorの内容を確認できる
     });
   };
+
+  const user = useContext(AuthContext);
+  if (user) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div>
       <h1>Email Login</h1>
