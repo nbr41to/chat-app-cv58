@@ -2,11 +2,12 @@ import { useForm } from 'react-hook-form';
 import { firebase, db } from '../config/firebase';
 
 const PostForm = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const onSubmit = (data) => {
     // console.log(data);
     db.collection('posts').add({ ...data, sendAt: firebase.firestore.Timestamp.now() }).then(() => {
       console.log('投稿に成功');
+      reset();
     }).catch((error) => {
       console.log('投稿に失敗');
       console.log(error);

@@ -12,7 +12,8 @@ const MessageList = () => {
         // return { id: id, ...doc.data() }; // との違いは？
       });
       console.log(data);
-      setMessagesList(data);
+      const sortList = data.sort((a, b) => a.sendAt - b.sendAt);
+      setMessagesList(sortList);
     });
   }, []);
   return (
