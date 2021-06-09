@@ -1,8 +1,5 @@
 import { useForm } from "react-hook-form";
 import { auth } from '../config/firebase';
-import { useContext } from 'react';
-import { AuthContext } from '../utils/Auth';
-import { Redirect } from 'react-router-dom';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
