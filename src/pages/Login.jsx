@@ -19,11 +19,6 @@ const Login = () => {
     });
   };
 
-  const user = useContext(AuthContext);
-  if (user) {
-    return <Redirect to="/" />;
-  }
-
   return (
     <div>
       <h1>Email Login</h1>
