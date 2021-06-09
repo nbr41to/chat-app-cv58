@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { auth } from '../config/firebase';
 
-const Signup = ({ history }) => {
+const Signup = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data) => {
     console.log(data); // react-hook-formを使って取ってきた値を確認できる
@@ -9,8 +9,6 @@ const Signup = ({ history }) => {
     auth.createUserWithEmailAndPassword(email, password).then((result) => {
       console.log('アカウントの作成に成功しました');
       console.log(result.user); // 作成時のuser情報を見れる
-
-      history.push('/');
 
     }).catch((error) => {
       console.log('アカウントの作成に失敗しました');

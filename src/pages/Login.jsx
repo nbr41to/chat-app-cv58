@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { auth } from '../config/firebase';
-import { useContext } from 'react'
-import { AuthContext } from '../utils/Auth'
+import { useContext } from 'react';
+import { AuthContext } from '../utils/Auth';
 import { Redirect } from 'react-router-dom';
 
-const Login = ({ history }) => {
+const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data) => {
     console.log(data); // react-hook-formを使って取ってきた値を確認できる
@@ -12,8 +12,6 @@ const Login = ({ history }) => {
     auth.signInWithEmailAndPassword(email, password).then((result) => {
       console.log('ログインに成功しました');
       console.log(result.user); // ログイン時のuser情報を見れる
-
-      history.push('/');
 
     }).catch((error) => {
       console.log('ログインに失敗しました');
