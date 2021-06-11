@@ -12,8 +12,9 @@ const MessageList = () => {
         // return { id: id, ...doc.data() }; // との違いは？
       });
       console.log(data);
-      const sortList = data.sort((a, b) => a.sendAt - b.sendAt);
-      setMessagesList(sortList);
+      setMessagesList(data);
+      // const sortList = data.sort((a, b) => b.sendAt - a.sendAt);
+      // setMessagesList(sortList);
     });
   }, []);
   return (
@@ -21,6 +22,7 @@ const MessageList = () => {
       <h2>Message List</h2>
       <hr />
       {
+        messagesList.sort((a, b) => b.sendAt - a.sendAt),
         messagesList.map(message => (
           <>
             <MessageCard key={message.id} message={message} />
