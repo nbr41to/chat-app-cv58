@@ -1,8 +1,9 @@
-import { useForm } from 'react-hook-form';
+import { useForm, FormProvider } from "react-hook-form";
 import { auth } from '../config/firebase';
+import EmailAndPasswordForm from '../components/EmailAndPasswordForm'
 
 const Signup = ({ history }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const methods = useForm();
   const onSubmit = (data) => {
     console.log(data); // react-hook-formを使って取ってきた値を確認できる
     const { email, password } = data;
@@ -21,15 +22,12 @@ const Signup = ({ history }) => {
   return (
     <div>
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type='email' placeholder='Email' {...register('email', { required: true })} />
-        {errors.email && <span style={{ color: 'tomato' }}>Emailを入力してください</span>}
-        <br />
-        <input type='password' placeholder='Password' {...register('password', { required: true })} />
-        {errors.password && <span style={{ color: 'tomato' }}>Passwordを入力してください</span>}
-        <br />
-        <input type="submit" />
-      </form>
+      <FormProvider {...methods} >
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <EmailAndPasswordForm />
+          <input type="submit" />
+        </form>
+      </FormProvider>
     </div>
   );
 };
